@@ -16,6 +16,32 @@
 - Pure logic in asmdefs with `noEngineReferences` where possible — they test in
   milliseconds and never need Play Mode.
 
+## Tooling (checked 2026-09)
+- **One bridge**: the `unity` CLI + `com.unity.pipeline`. Unity deprecated its
+  own MCP server in favour of the CLI. A second bridge (CoplayDev MCP for Unity)
+  only as a per-project fallback, off by default — two bridges race on one Editor.
+- **Skills**: Unity's official plugin (`Unity-Technologies/unity-agent-plugin`,
+  `claude plugin install unity@unity-agent-plugin --scope project`). Skills
+  only, ~2k tokens always-on, no DOTS/Netcode coverage. Project scope only.
+- **Docs on demand**: Context7 has versioned Unity package docs (Netcode, FMOD for
+  Unity) — prefer it over bundled documentation skills.
+- **Diagnostics without the Editor**: `Microsoft.Unity.Analyzers` in the build.
+- **CI**: GameCI (`game-ci/unity-test-runner`, `unity-builder`), needs Unity
+  licence secrets; add `com.unity.testtools.codecoverage` for coverage.
+- **Blender**: headless first — `blender -b file.blend -P tools/blender_export.py -- <args>`
+  with the FBX settings (axis, scale, apply transforms) fixed in the script. FBX
+  for rigged/animated, glTF (glTFast) for static props. Blender MCPs (Blender
+  Lab's official, ahujasid's) run arbitrary code with no auth: local only,
+  commit first, never unattended.
+- **FMOD**: bank builds headless through `fmodstudiocl` in a wrapper script
+  (`tools/fmod_build.*` — check its flags with `fmodstudiocl -help`); Studio's
+  scripting terminal (TCP 3663) is what every FMOD MCP drives. Those MCPs are
+  very young — try one on a copy of the project first.
+- **Generation MCPs** (3D, voice, audio): enable per project for an asset sprint,
+  disable after. Placeholder assets are marked as such in the asset path.
+- Wrap each toolchain in a small checked-in script; Claude learns the wrapper
+  once, and the wrapper owns the settings.
+
 ## Run & drive
 Bridge preference: live `unity` CLI commands → MCP for Unity → headless batch.
 - MCP: activate tool groups before use; pin `set_active_instance` (never a
@@ -52,7 +78,11 @@ in-memory implementation so two instances can run in one test.
     Unity version imports the package, compiles with no warnings from it, runs a
     sample — once with and once without the optional packages;
   - never regenerate the `.meta` of a shipped asset: GUIDs are the consumers'
-    references.
+    references;
+  - tests green on the **oldest and newest supported Unity versions** (GameCI
+    matrix), analyzers clean, and Asset Store validation passed — the Asset
+    Store UPM Publishing Tools / Asset Store Publishing Tools are editor tools,
+    so treat validation as a manual release step unless it's proven to run headless.
 
 ## Git
 `.meta` always committed with its asset; LFS for binaries; ignore `Library/`,
