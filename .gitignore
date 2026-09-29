@@ -1,0 +1,3 @@
+# Lessons are personal, learned from private projects: kept locally, never published.
+plugins/pipeline/lessons/*
+!plugins/pipeline/lessons/README.md

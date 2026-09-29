@@ -1,0 +1,14 @@
+{
+  "features": [
+    {
+      "id": "F-001",
+      "milestone": "M0",
+      "behaviour": "<one line the user would recognise>",
+      "acceptance": [
+        "<a check a person can perform>"
+      ],
+      "passes": false,
+      "evidence": null
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "name": "calkoh",
+  "description": "Claude Code plugins by Dvrkstvr",
+  "owner": {
+    "name": "Dvrkstvr",
+    "url": "https://github.com/Dvrkstvr"
+  },
+  "plugins": [
+    {
+      "name": "pipeline",
+      "source": "./plugins/pipeline",
+      "description": "Idea → MVP supply chain: gated stages, stage agents, lean context"
+    }
+  ]
+}

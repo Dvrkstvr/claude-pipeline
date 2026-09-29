@@ -1,0 +1,14 @@
+{
+  "name": "pipeline",
+  "displayName": "Pipeline",
+  "version": "0.1.0",
+  "description": "Takes an app from idea to MVP through gated stages (intake, clarify, feasibility, spike, scope, design, architecture, build, review, release) with stage subagents and file-based state. Approach- and stack-agnostic.",
+  "author": {
+    "name": "Dvrkstvr",
+    "url": "https://github.com/Dvrkstvr"
+  },
+  "homepage": "https://github.com/Dvrkstvr/claude-pipeline",
+  "repository": "https://github.com/Dvrkstvr/claude-pipeline",
+  "license": "MIT",
+  "keywords": ["workflow", "spec", "mvp", "agents", "context"]
+}
