@@ -12,6 +12,7 @@ A project picks one primary approach, and may name a secondary for one area
 | `prototype-first.md` | the running prototype + what it taught | a question the prototype answers | unclear ideas, new tech, "is this fun/useful at all?" |
 | `research-first.md` | a research note with sources | the note, with "what not to build" | domain-heavy features (health, finance, stats, algorithms) |
 | `loop-first.md` | the playable/usable core loop | nothing but the loop | games, creative tools, anything judged by feel in use |
+| `consumer-first.md` | consumer scenarios + samples | the consumer's code, sketched | libraries, frameworks, SDKs, packages, dev tools |
 
 To add an approach: copy a card, keep its five headings, add a row here.
 Approaches are data — no stage file names a specific approach.

@@ -7,7 +7,7 @@
 - stage: <n name> — <in progress | waiting on user: what | gate failed: item>
 - clarity: <m>/<n> · blocking <n> · assumed <n> · deferred <n>
 - feasibility: <green|amber|red> · H-open <n> · M-open <n> · spiked <n>
-- milestone: <Mx name> · features passing <p>/<total>
+- milestone: <Mx name> · features passing <p>/<total> · owed checks <n>
 - next: <one concrete action> → `/pipeline:run`
 
 ## Stages

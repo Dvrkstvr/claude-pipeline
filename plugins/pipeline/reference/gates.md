@@ -58,3 +58,9 @@ spike, or re-dispatch the agent with the gap), and re-check.
 A feature's `passes` flag in `features.json` flips to `true` only with evidence
 recorded beside it: the command that ran and its result, or the screenshot /
 run log path. "Looks done" is not evidence.
+
+Some checks only the user can make — feel, visuals, timing, a real device, a
+second person. The verifier writes them as **owed**: numbered steps, what to look
+for, and which on-screen numbers to report back. An owed check keeps the feature
+at `passes: false`; STATUS.md carries the count, and the conductor asks for them
+at the next milestone boundary instead of letting them pile up.

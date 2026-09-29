@@ -11,6 +11,7 @@ at the time of use — cards go stale, docs don't.
 | `expo-react-native.md` | Expo / React Native mobile apps |
 | `dotnet.md` | .NET: Blazor, Avalonia, MAUI, console, libraries |
 | `web.md` | browser apps and sites (any framework) |
+| `unity.md` | Unity games and Unity packages/frameworks |
 
 To add a stack: copy `generic.md`'s headings, fill them from a real project that
 worked, add a row here. Lessons that are true for every project on a stack go in

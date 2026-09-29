@@ -9,6 +9,7 @@ lens. It writes `pipeline/reviews/<milestone>-<lens>.md`.
 | `code` | standard, deep | correctness bugs, requirement gaps vs acceptance criteria, duplicated logic (a second implementation of something that exists), unhandled errors, silent failure |
 | `ux` | deep (standard if UI-heavy) | mismatch with mockups, missing states (empty/error/loading), refusals that aren't visible, controls that need to be explained |
 | `copy` | deep | every user-facing string: tone consistent with the playbook, errors say what happened and the way out, translations present |
+| `api` | libraries/frameworks (consumer-first) | public surface: naming, discoverability, breaking changes without a version bump, types no sample or test uses, two ways to do one thing |
 | `security` | deep, or anything touching auth, network, payments, personal data | trust boundaries, injection, secrets, what leaves the device |
 
 Findings are **only correctness or requirement gaps**, each with file:line, a
