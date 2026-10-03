@@ -84,6 +84,7 @@ Requires Node.js on PATH (for the session hook and the budget script).
 | Command | When |
 |---|---|
 | `/pipeline:run [idea]` | new idea in an empty folder, or continue where `pipeline/STATUS.md` says |
+| `/pipeline:auto [target]` | autopilot: run stage after stage until `stage <n>`, `M<x>`, `F-<id>` or `mvp` is reached. Stops only for sign-offs, blocking questions, owed checks, stalls (3 rounds without progress) or the round budget (`--max-rounds`, default 12) |
 | `/pipeline:adopt` | put an existing project under the pipeline (audit → reconstructed brief → entry stage) |
 | `/pipeline:feature <idea>` | one feature through the gates, after the MVP |
 | `/pipeline:clarify` | work through open blocking questions |
@@ -116,8 +117,8 @@ pipeline/
 plugins/pipeline/
   skills/        thin entry points (+ agent-contract, preloaded into every agent)
   agents/        feasibility-scout, spike-runner, scope-cutter, ux-mocker, architect,
-                 verifier, reviewer, release-checker, auditor
-  reference/     conductor protocol, gates, clarify loop, context rules,
+                 builder, verifier, reviewer, release-checker, auditor
+  reference/     conductor protocol, autopilot, gates, clarify loop, context rules,
                  stages/ (one file per stage), approaches/, stacks/, templates/
   lessons/       your cross-project lessons (personal, gitignored)
   scripts/       context-budget.mjs, session-start.mjs

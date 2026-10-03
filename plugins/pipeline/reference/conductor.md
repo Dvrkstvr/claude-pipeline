@@ -66,6 +66,8 @@ Read **only the stage file you are about to run**, not all of them.
 8. At a stage boundary, stop and tell the user in ≤ 5 lines: what was produced,
    gate result, what's next, and that they can continue now or start a fresh
    session and run `/pipeline:run` — the files carry everything.
+   Under `/pipeline:auto`, `$ROOT/reference/autopilot.md` replaces this stop with
+   a one-line status and continues to the next round, until its target is reached.
 
 ## User sign-off points (always stop and ask)
 
@@ -94,4 +96,5 @@ Stage 7 hands implementation to Superpowers if it is installed (skills named
 `superpowers:*` are available), otherwise to the built-in loop in
 `stages/07-build.md`. Our intake + clarify + scope **replace**
 `superpowers:brainstorming`: the spec already exists in `pipeline/`, say so when
-invoking Superpowers skills.
+invoking Superpowers skills. Under autopilot, the built-in loop runs its tasks
+as parallel `pipeline:builder` agents (see `autopilot.md`).

@@ -1,7 +1,7 @@
 {
   "name": "pipeline",
   "displayName": "Pipeline",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Takes an app from idea to MVP through gated stages (intake, clarify, feasibility, spike, scope, design, architecture, build, review, release) with stage subagents and file-based state. Approach- and stack-agnostic.",
   "author": {
     "name": "Dvrkstvr",

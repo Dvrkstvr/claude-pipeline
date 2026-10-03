@@ -20,7 +20,7 @@ try {
     [
       'This project runs the idea → MVP pipeline (plugin "pipeline"). State from pipeline/STATUS.md:',
       now || '(STATUS.md has no "## Now" section)',
-      'Continue with /pipeline:run · overview /pipeline:status · new feature /pipeline:feature <idea>.',
+      'Continue with /pipeline:run (or /pipeline:auto <target> to run unattended) · overview /pipeline:status · new feature /pipeline:feature <idea>.',
       'Do not load other pipeline/ files until a stage needs them.',
     ].join('\n'),
   );

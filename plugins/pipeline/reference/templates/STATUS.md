@@ -9,6 +9,7 @@
 - feasibility: <green|amber|red> · H-open <n> · M-open <n> · spiked <n>
 - milestone: <Mx name> · features passing <p>/<total> · owed checks <n>
 - next: <one concrete action> → `/pipeline:run`
+<!-- only while /pipeline:auto runs: autopilot: <target> · round <n>/<max> · progress <score> · stall <k> -->
 
 ## Stages
 | # | Stage | State | Gate | Date |

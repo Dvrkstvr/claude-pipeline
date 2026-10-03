@@ -22,7 +22,8 @@ milestone in a fresh session if the current one is already long.
    - **Otherwise (built-in loop)**: branch or worktree; break the milestone into
      tasks of ≤ ~30 min each written into the milestone section of `scope.md`;
      for each task implement → run the playbook's check commands → fix → commit
-     with a message saying what was verified.
+     with a message saying what was verified. Under `/pipeline:auto`, tasks go
+     to parallel `pipeline:builder` agents instead (`$ROOT/reference/autopilot.md`).
 4. **Verify** — dispatch `pipeline:verifier` with the milestone's feature ids. It
    runs checks and drives the real app per the playbook's verify method, and
    reports per feature: pass/fail + evidence. Only then set `passes: true` and
