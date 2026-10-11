@@ -8,6 +8,9 @@ Dispatch `pipeline:scope-cutter`. It reads `brief.md`, `risks.md`,
 - **M0 = the core-promise path, end to end**, as thin as possible, on the real
   platform. Nothing else starts before M0 passes. (Breadth before depth is the
   most expensive mistake this pipeline exists to prevent.)
+- **M0's first task is a walking skeleton**: the core-promise path running end
+  to end, however crude, before any part of it is hardened. Hardening tasks
+  (real crypto, retries, persistence) come after and keep it running.
 - Then milestones M1…Mn, each shippable to the user for a look, each ≤ ~1 week
   of focused work, ordered by risk first and value second.
 - Every feature: id, milestone, one-line user-visible behaviour, acceptance
@@ -21,6 +24,7 @@ Dispatch `pipeline:scope-cutter`. It reads `brief.md`, `risks.md`,
 ## Gate — must items
 
 - [ ] M0 is the core-promise path and nothing else
+- [ ] M0 starts with a walking-skeleton task
 - [ ] every MVP feature has acceptance criteria and a milestone
 - [ ] every non-obvious interaction has a state/transition spec or a design task
 - [ ] deferred questions re-checked; none became blocking

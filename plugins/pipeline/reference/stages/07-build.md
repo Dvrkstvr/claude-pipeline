@@ -14,7 +14,9 @@ milestone in a fresh session if the current one is already long.
    - **Superpowers installed** (`superpowers:*` skills exist): say the spec is in
      `pipeline/` and brainstorming is already done, then use
      `superpowers:using-git-worktrees` → `superpowers:writing-plans` (input: this
-     milestone's features and acceptance criteria) → `superpowers:executing-plans`
+     milestone's features and acceptance criteria; ask for interfaces, test
+     cases and steps, not the implementation, and ≤ ~400 lines per plan: split
+     a bigger milestone into several plans) → `superpowers:executing-plans`
      (default, cheaper) or `superpowers:subagent-driven-development` (for a
      milestone with many independent tasks). Keep TDD where the playbook's test
      strategy says so; for UI and editor-driven work, verification is by running
@@ -35,6 +37,10 @@ milestone in a fresh session if the current one is already long.
 6. Stage 8 review, then curate (`$ROOT/reference/curate.md`), then merge.
 
 ## Rules
+
+- Keep the core promise running. After each task that touches its path, run it
+  end to end and update the `core promise:` line in STATUS.md. If it has never
+  run and the milestone's walking-skeleton task isn't done, that task is next.
 
 - Nothing merges that hasn't run on its target (device, browser, editor).
   "Not yet run on a device" in a commit message means not done.

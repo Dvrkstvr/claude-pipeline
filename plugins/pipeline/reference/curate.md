@@ -13,7 +13,12 @@ milestone, at the end of a spark, and on `/pipeline:curate`.
 4. Apply the line test to `CLAUDE.md` and every rule file without `paths:`.
    Move or delete what fails it. Remove anything stale: counts, statuses,
    "currently", references to files that no longer exist (grep to check).
-5. Trim `STATUS.md` to ≤ 60 lines — finished history belongs in git.
+5. Trim `STATUS.md` to ≤ 60 lines — finished history belongs in git. Remove
+   feature counts copied into it; the hook computes them.
+   Also compare paperwork to product: the decisions, docs and pipeline lines
+   added this milestone against what a user can now do that they couldn't
+   before. Paperwork growing while the core promise still doesn't run is a
+   finding for the user, not a note.
 6. Cross-project lessons (true for every project on this stack or approach):
    show the user the proposed line and the target file under `$ROOT/lessons/`,
    and write it only if they agree — it changes every future project.

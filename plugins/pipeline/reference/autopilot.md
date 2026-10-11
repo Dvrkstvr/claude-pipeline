@@ -24,7 +24,9 @@ stage agent, a batch of build tasks, a verify, or a review.
 1. No `pipeline/STATUS.md` → autopilot can't start: intake is interactive.
    Run `/pipeline:run` (or `/pipeline:adopt`) first, then come back.
 2. Write the autopilot line into STATUS.md "Now" (replaces any old one):
-   `autopilot: <target> · round <n>/<max> · progress <score> · stall <k>`
+   `autopilot: <target> · round <n>/<max> · progress <score> · stall <k> · owner <session>`
+   One conductor at a time: if the line already names another owner and its
+   last log line is under a day old, don't start; tell the user who holds it.
 3. Create or append `pipeline/autopilot-log.md`: one `## Run <date> → <target>`
    heading, then one line per round. This is the only autopilot history file.
    STATUS.md stays ≤ 60 lines.
@@ -37,10 +39,13 @@ stage agent, a batch of build tasks, a verify, or a review.
      and the next round starts. Leave the stop out only when the next stage is
      still within the target.
    - Stage 7, built-in engine: see "Parallel build" below.
-3. **Score progress.** Read it from the files, not from agent reports:
-   `progress = stage · gate must-items met · features passing · open blocking`
+3. **Score progress.** Read it from the files and git, not from agent reports:
+   `progress = stage · gate must-items met · features passing · tasks done · open blocking`
+   *Tasks done* counts the milestone's build tasks committed with green checks
+   (built-in loop: the task list in `scope.md`; Superpowers: the plan's tasks).
+   Features only flip at verify, so during a build the task count is what moves.
    A round made progress if the stage advanced, more must-items are met, more
-   features pass, or a blocking question was closed.
+   features pass, more tasks are done, or a blocking question was closed.
 4. **Log** one line: `R<n> <step> → <gate result> · progress <score> · <decision>`.
 5. **Decide** using the table below.
 
@@ -63,7 +68,8 @@ stage agent, a batch of build tasks, a verify, or a review.
   the autopilot in the same conversation
 - **owed checks** at a milestone boundary: ask for them, then resume
 - outward-facing or irreversible actions: push, merge to the main branch,
-  publish, store upload, deleting user data
+  publish, store upload, deleting user data. Exception: what the playbook's
+  "Permissions" section allows without asking (e.g. pushing feature branches).
 - the conversation is getting long at a milestone boundary → stop and say:
   *"Fresh session, then `/pipeline:auto <same target>`. The files carry
   everything."* The round counter continues from the log.
@@ -77,12 +83,15 @@ With Superpowers installed, keep `stages/07-build.md` as written: its
    task with the files or modules it touches.
 2. Each round, take the ready tasks (dependencies done). Group tasks with
    **disjoint** files into a batch of at most 4.
-3. Dispatch one `pipeline:builder` per task **in parallel**, all on the
-   milestone branch. Builders don't commit. Tasks that overlap go in later
-   batches.
-4. After the batch: run the playbook's check commands yourself. Green → one
-   commit per task, each message saying what was verified. Red → route the
-   failing task back to its builder with the output.
+3. Dispatch one `pipeline:builder` per task **in parallel**, each in its own
+   git worktree off the milestone branch (`Agent` with `isolation: "worktree"`).
+   Builders sharing one tree collide on build outputs and lock files (`obj/`,
+   `node_modules/.cache`, Unity `Library/`). Each builder commits its task once
+   on its worktree branch. Tasks that overlap go in later batches.
+4. After the batch: cherry-pick each task's commit onto the milestone branch,
+   then run the playbook's check commands yourself, once. Green → keep the
+   commits, each message saying what was verified. Red → route the failing
+   task back to its builder with the output.
 5. When every task of the milestone is done: `pipeline:verifier` (fresh agent,
    never a builder) → stage 8 → curate, as usual.
 

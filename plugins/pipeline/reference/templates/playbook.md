@@ -30,5 +30,10 @@
 - <e.g. every user-facing string in the i18n file>
 - <e.g. mutation check on pure modules each milestone (deep)>
 
+## Permissions
+<!-- Outward actions agents may take without asking. Everything else stops for the user. -->
+- <e.g. push feature branches; never push or merge to main>
+- <e.g. no publishing to public services without a per-milestone budget>
+
 ## Voice & conventions
 <Only what a reviewer would otherwise flag: copy tone, naming, commit style.>

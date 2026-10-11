@@ -14,8 +14,12 @@ Read-only. Report in ≤ 15 lines:
 3. Features passing per milestone, from `pipeline/features.json`.
 4. The summary line of `node "$ROOT/scripts/context-budget.mjs"` run from the
    project root.
-5. Any mismatch between STATUS.md and the other files (e.g. a stage marked done
-   whose gate items aren't met) — flag it, don't fix it.
+5. The `core promise:` line, and how many rounds or days since it last ran end
+   to end (from `autopilot-log.md` and git). "never" past M0's first task is
+   the most important thing on this report.
+6. Any mismatch between STATUS.md and the other files (e.g. a stage marked done
+   whose gate items aren't met, or counts in STATUS.md that differ from
+   features.json) — flag it, don't fix it.
 
 If there is no `pipeline/` folder, say so and point at `/pipeline:run` or
 `/pipeline:adopt`.

@@ -27,8 +27,13 @@ idea ─▶ 1 Intake ─▶ 2 Feasibility ─▶ 3 Spike ─▶ 4 Scope ─▶ 5
   risk has an impact (H/M/L) and an evidence level (`known`, `platform`,
   `hypothesis`, `proven`). One blocking question or one unproven H-impact risk
   stops the stage.
-- **M0 is always the core promise, end to end, on the real platform.** Breadth
-  before depth is the most expensive mistake in solo AI-assisted building.
+- **M0 is always the core promise, end to end, on the real platform**, and its
+  first task is a walking skeleton that runs it however crude. Breadth before
+  depth is the most expensive mistake in solo AI-assisted building; paperwork
+  before a running product is the second.
+- **What's live comes first.** Adopting a project starts by checking what is
+  deployed and whether it hurts anyone today; that goes to a hotfix outside the
+  stages.
 - **Nothing is "done" without evidence.** A feature's pass flag flips only when a
   separate verifier agent ran the checks and drove the real app.
 - **Context stays lean by construction.** Knowledge goes to the cheapest layer
@@ -85,7 +90,7 @@ Requires Node.js on PATH (for the session hook and the budget script).
 |---|---|
 | `/pipeline:run [idea]` | new idea in an empty folder, or continue where `pipeline/STATUS.md` says |
 | `/pipeline:auto [target]` | autopilot: run stage after stage until `stage <n>`, `M<x>`, `F-<id>` or `mvp` is reached. Stops only for sign-offs, blocking questions, owed checks, stalls (3 rounds without progress) or the round budget (`--max-rounds`, default 12) |
-| `/pipeline:adopt` | put an existing project under the pipeline (audit → reconstructed brief → entry stage) |
+| `/pipeline:adopt` | put an existing project under the pipeline (audit → live-harm hotfixes → reconstructed brief → entry stage) |
 | `/pipeline:feature <idea>` | one feature through the gates, after the MVP |
 | `/pipeline:clarify` | work through open blocking questions |
 | `/pipeline:status` | where things stand |
@@ -93,8 +98,9 @@ Requires Node.js on PATH (for the session hook and the budget script).
 
 Entry skills use `disable-model-invocation`, so they cost no context until you
 type them. In an enabled project the plugin's always-on cost is under 1k tokens.
-A SessionStart hook injects the "Now" section of `pipeline/STATUS.md` in pipeline
-projects and prints nothing elsewhere.
+A SessionStart hook injects the "Now" section of `pipeline/STATUS.md` plus
+feature counts computed from `features.json` in pipeline projects, and prints
+nothing elsewhere.
 
 What a project gets:
 

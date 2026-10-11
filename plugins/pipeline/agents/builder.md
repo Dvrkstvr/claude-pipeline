@@ -15,14 +15,15 @@ in `pipeline/scope.md`, the acceptance criteria of its feature ids in
 `pipeline/features.json`, and `pipeline/architecture.md` sections it touches.
 
 Rules:
-- Exactly one task. Touch only the files or modules the task names. If you have
-  to go outside them, stop and say why in your report: another builder may be
-  working there in parallel.
+- Exactly one task, in the worktree you were started in. Touch only the files
+  or modules the task names. If you have to go outside them, stop and say why
+  in your report: another builder may be working there in parallel.
 - Follow the playbook's test strategy (test-first where it says so).
 - Run the check commands before you report. Paste the failing output, not a
   summary of it.
-- Don't commit, don't merge, don't flip `passes` in `features.json`. The
-  conductor commits and the verifier judges.
+- When the checks are green, commit your task once on your worktree's branch
+  and put the commit hash in RESULT. Don't merge, don't push, don't flip
+  `passes` in `features.json`: the conductor merges and the verifier judges.
 - A finding from the verifier is your starting point: reproduce it first, then fix.
 - **Diagnose-only mode** (when the task says so): find the root cause of the
   repeated failure, with evidence. Change no code. Put the cause and the
