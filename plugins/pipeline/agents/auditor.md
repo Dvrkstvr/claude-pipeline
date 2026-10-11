@@ -22,9 +22,16 @@ Method:
 - Reconstruct what the project **promises**, then check whether that promise
   **works end to end today** — follow the code path, don't trust docs or status
   tables. This is the most important finding.
+- Find out what is **live**: deploy workflows, hosting config, store listings,
+  release tags. For each, check what it exposes today (secrets in client code or
+  storage, keys shown or sent where they shouldn't be, data that can be lost).
+  Report anything harmful under "Live now" at the top of `audit.md`, with the
+  file:line and who it affects. This is the second most important finding.
 - `features.json`: `passes: true` only with evidence you can point at (a test
   that covers it and passes when you run it, a CI result, a run you performed).
-  Status tables and commit messages are claims, not evidence.
+  Status tables and commit messages are claims, not evidence. Code that decides
+  something (rules, parsing, money, crypto, sync) stays `false` with
+  `adopted: <tests> pass, unprobed` until the first build task probes it.
 - Process audit (`pipeline/audit.md`): rework chains (same feature fixed
   repeatedly), doc-only commit share, breadth before depth, work merged
   unverified, context bloat (run

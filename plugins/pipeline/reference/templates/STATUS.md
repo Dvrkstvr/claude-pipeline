@@ -7,9 +7,11 @@
 - stage: <n name> — <in progress | waiting on user: what | gate failed: item>
 - clarity: <m>/<n> · blocking <n> · assumed <n> · deferred <n>
 - feasibility: <green|amber|red> · H-open <n> · M-open <n> · spiked <n>
-- milestone: <Mx name> · features passing <p>/<total> · owed checks <n>
+- milestone: <Mx name> · owed checks <n>
+- core promise: last ran end to end <date, how> | never
 - next: <one concrete action> → `/pipeline:run`
-<!-- only while /pipeline:auto runs: autopilot: <target> · round <n>/<max> · progress <score> · stall <k> -->
+<!-- Feature counts are computed from features.json by the session hook and /pipeline:status; don't copy them here, they drift. -->
+<!-- only while /pipeline:auto runs: autopilot: <target> · round <n>/<max> · progress <score> · stall <k> · owner <session> -->
 
 ## Stages
 | # | Stage | State | Gate | Date |

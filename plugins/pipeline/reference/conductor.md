@@ -79,6 +79,15 @@ Read **only the stage file you are about to run**, not all of them.
 
 Everything else proceeds on recorded assumptions the user can overrule later.
 
+## Hotfix lane
+
+Something already deployed hurts its users (leaks a secret, loses data, opens a
+hole): that doesn't wait for a stage. Propose the smallest fix to the user, on
+its own branch against what is deployed, with a test or a run that shows the
+harm is gone. It ships through the project's normal review and merge, never
+silently. Record it in `decisions.md`; anything bigger than the fix goes into
+scope as usual.
+
 ## Context hygiene (the reason this plugin exists)
 
 - Stage agents read files and return **≤ 25-line reports**. Never paste their
